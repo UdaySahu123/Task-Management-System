@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    # In-memory H2 database: tests never touch a real MySQL server and never
+    # depend on production credentials. MySQL compatibility mode keeps the
+    # SQL behaviour close to the real database.
+    url: jdbc:h2:mem:tasktest;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      # Fresh schema for every test run, generated from the entities.
+      ddl-auto: create-drop
+
+  flyway:
+    # The MySQL migrations in src/main/resources/db/migration are not needed here.
+    enabled: false
+
+app:
+  jwt:
+    # Test-only secret. Never used outside the test classpath.
+    secret: test-only-secret-key-with-more-than-32-characters-123456
+    expiration-ms: 3600000
+  cors:
+    allowed-origins: http://localhost:5173
+
+logging:
+  level:
+    org.springframework: WARN
+    org.hibernate: WARN
