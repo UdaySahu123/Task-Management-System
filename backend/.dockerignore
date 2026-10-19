@@ -1,0 +1,8 @@
+# Build context exclusions for the backend image.
+target/
+*.iml
+.idea/
+.vscode/
+.env
+*.log
+.server.pid

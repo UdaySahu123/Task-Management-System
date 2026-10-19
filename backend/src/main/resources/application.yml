@@ -47,7 +47,9 @@ spring:
     default-property-inclusion: non_null
 
 server:
-  port: ${SERVER_PORT:8080}
+  # PORT is set automatically by most PaaS providers (Render, Railway, Heroku);
+  # SERVER_PORT is the local override and 8080 the final fallback.
+  port: ${PORT:${SERVER_PORT:8080}}
   error:
     include-message: never
     include-stacktrace: never
